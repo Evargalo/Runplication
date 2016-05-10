@@ -1,5 +1,8 @@
 package com.example.ensai.runplication;
 
+import android.content.Context;
+
+import com.example.ensai.runplication.Database.Database;
 import com.example.ensai.runplication.Releve;
 import com.example.ensai.runplication.SortieType;
 
@@ -9,6 +12,9 @@ import java.util.Calendar;
  * Created by ensai on 10/05/16.
  */
 public class Sortie {
+
+    public Context context;
+    private Integer id;
     private Double distance;
     private Double duree;
     private Double duree_pause;
@@ -18,14 +24,30 @@ public class Sortie {
     private Double calories;
     private SortieType type;
     private Releve releve;
+    private String commentaire;
 
-    public Sortie() {
+    public Sortie(Context context) {
+        this.context=context;
     }
 
     public void start(){}
     public void finish(){}
-    public void register(){}
+    public void register(){
+        Database myDB=new Database(context);
+        String[] arguments={"",""};
+        arguments[0]=id.toString();
+        arguments[1]=distance.toString();
+        myDB.getWritableDatabase().rawQuery("INSERT INTO sortie VALUES (?,?);",arguments);
+
+
+    }
     public void show(){}
+
+    public String toString(){
+        return (this.heure_debut+" ; "+this.type+" ; "+this.distance);
+    }
+
+    // Getters et Setters
 
     public Double getDistance() {
         return distance;
@@ -97,5 +119,21 @@ public class Sortie {
 
     public void setDuree(Double duree) {
         this.duree = duree;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
