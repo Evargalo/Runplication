@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class EcranAccueil extends AppCompatActivity implements View.OnClickListener  {
     Button boutonMap=null;
+    Button boutonListeSortie=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,12 +20,22 @@ public class EcranAccueil extends AppCompatActivity implements View.OnClickListe
         int i = 4;
         boutonMap = (Button) findViewById(R.id.mapButton);
         boutonMap.setOnClickListener(this);
+        boutonListeSortie= (Button) findViewById(R.id.listeDesSortiesButton);
+        boutonMap.setOnClickListener(this);
 
     }
     @Override
     public void onClick(View v) {
-        Intent intent =new Intent(this,MapsActivity.class);
-        startActivity(intent);
+        Intent intent1 =new Intent(this,MapsActivity.class);
+        Intent intent2 =new Intent(this,ListeSorties.class);
+        if (v==boutonListeSortie){
+            startActivity(intent2);
+        }
+        if (v==boutonMap){
+            startActivity(intent1);
+        }
     }
+
+
 
 }

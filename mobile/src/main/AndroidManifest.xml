@@ -45,7 +45,10 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".ShowSortie"></activity>
+        <activity android:name=".ShowSortie" />
+        <activity android:name=".ListeSorties" />
+        <activity android:name=".StartRunning" />
+        <activity android:name=".Parametres"></activity>
     </application>
 
 </manifest>
