@@ -28,7 +28,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-
+    public void updatePosition( double latitude, double longitude){
+        mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title("Vous êtes ici"));
+    }
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
