@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
+import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
@@ -14,6 +15,8 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.GoogleMap;
 
 import java.io.IOException;
 import java.util.List;
@@ -32,14 +35,14 @@ public class MyLocationListener implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
 
-       longitude = location.getLongitude();
+        longitude = location.getLongitude();
         String longitudetxt = "Longitude: " + longitude;
         Log.v("longitude", longitudetxt);
         latitude = location.getLatitude();
         String latitudetxt = "Latitude: " + latitude;
         Log.v("latitude", latitudetxt);
         double speed = location.getSpeed(); //spedd in meter/minute
-        speed = (speed*3600)/1000;      // speed in km/minute
+        speed = (speed * 3600) / 1000;      // speed in km/minute
 
     }
 
@@ -52,7 +55,9 @@ public class MyLocationListener implements LocationListener {
     }
 
     public void update(Context context) {
-        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        LocationManager service = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String provider = service.getBestProvider(criteria, false);
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -63,8 +68,9 @@ public class MyLocationListener implements LocationListener {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        locationManager.requestLocationUpdates(locationManager.getAllProviders().get(1), 400, 1, this);//todo
-
+        Location location = service.getLastKnownLocation(provider);
+        longitude = location.getLongitude();
+        latitude = location.getLatitude();
     }
 
     @Override
