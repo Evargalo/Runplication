@@ -63,4 +63,8 @@
     <string name="date_sortie">Date:</string>
     <string name="textOnClick">Clic!</string>
     <string name="buttonNouvelleSortie">Nouvelle Sortie</string>
+    <string name="parametres">Paramètres</string>
+    <string name="map">Map</string>
+    <string name="liste_des_sorties">Liste des Sorties</string>
+    <string name="nouvelle_sortie">Nouvelle sortie</string>
 </resources>

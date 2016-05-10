@@ -13,11 +13,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Let's Run !"
-        android:id="@+id/text_acceuil"/>
+        android:id="@+id/text_accueil"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Map"
+        android:text="@string/nouvelle_sortie"
+        android:id="@+id/AllonsCourirButton"
+        android:layout_below="@id/text_accueil"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/liste_des_sorties"
+        android:id="@+id/listeDesSortiesButton"
+        android:layout_below="@id/AllonsCourirButton"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/map"
         android:id="@+id/mapButton"
-        android:layout_below="@id/text_acceuil"/>
+        android:layout_below="@id/listeDesSortiesButton"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/parametres"
+        android:id="@+id/ParametresButton"
+        android:layout_below="@id/listeDesSortiesButton"/>
 </RelativeLayout>

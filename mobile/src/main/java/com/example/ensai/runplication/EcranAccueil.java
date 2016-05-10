@@ -20,12 +20,20 @@ public class EcranAccueil extends AppCompatActivity implements View.OnClickListe
         int i = 4;
         boutonMap = (Button) findViewById(R.id.mapButton);
         boutonMap.setOnClickListener(this);
+        boutonListeSortie= (Button) findViewById(R.id.listeDesSortiesButton);
+        boutonMap.setOnClickListener(this);
 
     }
     @Override
     public void onClick(View v) {
-        Intent intent =new Intent(this,MapsActivity.class);
-        startActivity(intent);
+        Intent intent1 =new Intent(this,MapsActivity.class);
+        Intent intent2 =new Intent(this,ListeSorties.class);
+        if (v==boutonListeSortie){
+            startActivity(intent2);
+        }
+        if (v==boutonMap){
+            startActivity(intent1);
+        }
     }
 
 

@@ -15,10 +15,11 @@ public class Database extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE sortie (id INT PRIMARY KEY, date DATE, type TEXT, " +
                 "distance NUMERIC, duree NUMERIC, duree_pause NUMERIC, " +
-                "vitesse NUMERIC, allure NUMERIC, calories NUMERIC, commment TEXT); " +
+                "vitesse NUMERIC, allure NUMERIC, calories NUMERIC, comment TEXT); " +
                 "CREATE TABLE releve (id TEXT PRIMARY KEY, idSortie INT, date DATE, " +
                 "longitude NUMERIC, latitude NUMERIC), " +
-                "FOREIGN KEY (idSortie) REFERENCES sortie(id);" );
+                "FOREIGN KEY (idSortie) REFERENCES sortie(id);" +
+                "INSERT INTO sortie VALUES ('1','','','2531','8234','23','','','','c'est fatigant!')" );
     }
     public void onUpgrade(SQLiteDatabase db,int oldVersion, int newVersion){
 
