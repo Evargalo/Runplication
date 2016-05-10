@@ -46,6 +46,10 @@ public class ListeSorties extends AppCompatActivity implements View.OnClickListe
         {
             sortie=new Sortie(this);
             sortie.setId(c.getInt(0));
+            sortie.setDistance(c.getDouble(4));
+            sortie.setDuree(c.getDouble(5));
+            sortie.setDuree_pause(c.getDouble(6));
+            sortie.setCommentaire(c.getString(10));
             sortieList.add(sortie);
         }
         c.close();

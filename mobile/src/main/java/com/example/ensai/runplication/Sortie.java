@@ -15,11 +15,11 @@ public class Sortie {
 
     public Context context;
     private Integer id;
-    private Double distance;
-    private Double duree;
-    private Double duree_pause;
-    private Double pos_denivele;
-    private Double neg_denivele;
+    private Double distance;        // en mètres
+    private Double duree;           // en secondes
+    private Double duree_pause;     // en secondes
+    private Double pos_denivele;    // en mètres
+    private Double neg_denivele;    // en mètres
     private Calendar heure_debut;
     private Double calories;
     private SortieType type;
@@ -36,8 +36,16 @@ public class Sortie {
         Database myDB=new Database(context);
         String[] arguments={"",""};
         arguments[0]=id.toString();
-        arguments[1]=distance.toString();
-        myDB.getWritableDatabase().rawQuery("INSERT INTO sortie VALUES (?,?);",arguments);
+        arguments[1]=heure_debut.toString();
+        arguments[2]=type.toString();
+        arguments[3]=distance.toString();
+        arguments[4]=duree.toString();
+        arguments[5]=duree_pause.toString();
+        arguments[6]=vitesse().toString();
+        arguments[7]=allure().toString();
+        arguments[8]=calories.toString();
+        arguments[9]=commentaire.toString();
+        myDB.getWritableDatabase().rawQuery("INSERT INTO sortie VALUES (?,?,?,?,?,?,?,?,?,?);",arguments);
 
 
     }
@@ -45,6 +53,17 @@ public class Sortie {
 
     public String toString(){
         return (this.heure_debut+" ; "+this.type+" ; "+this.distance);
+    }
+
+    private Double vitesse(){
+        Double vitesse=0.0;
+        if (duree>0.000001) vitesse=distance/duree/3.6;
+        return vitesse;
+    }
+    private Double allure(){
+        Double allure=0.0;
+       if(distance>0.000001) allure=duree/distance/1000;
+        return allure;
     }
 
     // Getters et Setters

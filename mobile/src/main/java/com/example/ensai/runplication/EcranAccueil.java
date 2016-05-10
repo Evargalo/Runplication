@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class EcranAccueil extends AppCompatActivity implements View.OnClickListener  {
     Button boutonMap=null;
+    Button boutonListeSortie=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,5 +27,7 @@ public class EcranAccueil extends AppCompatActivity implements View.OnClickListe
         Intent intent =new Intent(this,MapsActivity.class);
         startActivity(intent);
     }
+
+
 
 }
