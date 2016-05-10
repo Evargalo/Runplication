@@ -9,6 +9,7 @@ import java.util.Calendar;
  * Created by ensai on 10/05/16.
  */
 public class Sortie {
+    private Integer id;
     private Double distance;
     private Double duree;
     private Double duree_pause;
@@ -19,6 +20,10 @@ public class Sortie {
     private SortieType type;
     private Releve releve;
 
+
+
+    private String commentaire;
+
     public Sortie() {
     }
 
@@ -26,6 +31,9 @@ public class Sortie {
     public void finish(){}
     public void register(){}
     public void show(){}
+
+
+    // Getters et Setters
 
     public Double getDistance() {
         return distance;
@@ -97,5 +105,21 @@ public class Sortie {
 
     public void setDuree(Double duree) {
         this.duree = duree;
+    }
+
+    public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
