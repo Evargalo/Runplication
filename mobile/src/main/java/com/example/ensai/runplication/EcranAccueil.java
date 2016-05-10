@@ -9,5 +9,6 @@ public class EcranAccueil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ecran_accueil);
+        int i = 1;
     }
 }
