@@ -31,18 +31,20 @@ public class MyLocationListener implements LocationListener {
 
     @Override
     public void onLocationChanged(Location loc) {
-        Context context = null;
-        // pb.setVisibility(View.INVISIBLE);
+        Context context=null;
+       // pb.setVisibility(View.INVISIBLE);
         Toast.makeText(
                 context,
                 "Location changed: Lat: " + loc.getLatitude() + " Lng: "
                         + loc.getLongitude(), Toast.LENGTH_SHORT).show();
-        longitude = loc.getLongitude();
+       longitude = loc.getLongitude();
         String longitudetxt = "Longitude: " + longitude;
         Log.v("longitude", longitudetxt);
-        latitude = loc.getLatitude();
+        latitude = location.getLatitude();
         String latitudetxt = "Latitude: " + latitude;
         Log.v("latitude", latitudetxt);
+        double speed = location.getSpeed(); //spedd in meter/minute
+        speed = (speed*3600)/1000;      // speed in km/minute
 
     }
 
