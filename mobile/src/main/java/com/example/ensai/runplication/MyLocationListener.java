@@ -19,6 +19,9 @@ import java.util.Locale;
  */
 public class MyLocationListener implements LocationListener {
 
+    private Double longitude = (double) 0; //todo : mettre null
+    private Double latitude = (double) 0; //todo : mettre null
+
     @Override
     public void onLocationChanged(Location loc) {
         Context context=null;
@@ -27,11 +30,21 @@ public class MyLocationListener implements LocationListener {
                 context,
                 "Location changed: Lat: " + loc.getLatitude() + " Lng: "
                         + loc.getLongitude(), Toast.LENGTH_SHORT).show();
-        String longitude = "Longitude: " + loc.getLongitude();
-        Log.v("longitude", longitude);
-        String latitude = "Latitude: " + loc.getLatitude();
-        Log.v("latitude", latitude);
+       longitude = loc.getLongitude();
+        String longitudetxt = "Longitude: " + longitude;
+        Log.v("longitude", longitudetxt);
+        latitude = loc.getLatitude();
+        String latitudetxt = "Latitude: " + latitude;
+        Log.v("latitude", latitudetxt);
 
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
     }
 
     @Override
