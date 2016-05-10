@@ -37,10 +37,10 @@ public class MyLocationListener implements LocationListener {
 
         longitude = location.getLongitude();
         String longitudetxt = "Longitude: " + longitude;
-        Log.v("longitude", longitudetxt);
+        Log.i("location", longitudetxt);
         latitude = location.getLatitude();
         String latitudetxt = "Latitude: " + latitude;
-        Log.v("latitude", latitudetxt);
+        Log.i("location", latitudetxt);
         double speed = location.getSpeed(); //spedd in meter/minute
         speed = (speed * 3600) / 1000;      // speed in km/minute
 
@@ -55,9 +55,11 @@ public class MyLocationListener implements LocationListener {
     }
 
     public void update(Context context) {
+        Log.i("location", "Mise à jour !");
         LocationManager service = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         String provider = service.getBestProvider(criteria, false);
+
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -66,8 +68,10 @@ public class MyLocationListener implements LocationListener {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            Log.e("location", "Erreur de Permission!");
             return;
         }
+
         Location location = service.getLastKnownLocation(provider);
         longitude = location.getLongitude();
         latitude = location.getLatitude();
