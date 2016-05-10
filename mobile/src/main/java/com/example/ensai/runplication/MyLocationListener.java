@@ -30,14 +30,9 @@ public class MyLocationListener implements LocationListener {
     private Double latitude = (double) 0; //todo : mettre null
 
     @Override
-    public void onLocationChanged(Location loc) {
-        Context context=null;
-       // pb.setVisibility(View.INVISIBLE);
-        Toast.makeText(
-                context,
-                "Location changed: Lat: " + loc.getLatitude() + " Lng: "
-                        + loc.getLongitude(), Toast.LENGTH_SHORT).show();
-       longitude = loc.getLongitude();
+    public void onLocationChanged(Location location) {
+
+       longitude = location.getLongitude();
         String longitudetxt = "Longitude: " + longitude;
         Log.v("longitude", longitudetxt);
         latitude = location.getLatitude();
