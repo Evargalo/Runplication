@@ -23,19 +23,21 @@ public class MyLocationListener implements LocationListener {
     private Double latitude = (double) 0; //todo : mettre null
 
     @Override
-    public void onLocationChanged(Location loc) {
+    public void onLocationChanged(Location location) {
         Context context=null;
        // pb.setVisibility(View.INVISIBLE);
         Toast.makeText(
                 context,
-                "Location changed: Lat: " + loc.getLatitude() + " Lng: "
-                        + loc.getLongitude(), Toast.LENGTH_SHORT).show();
-       longitude = loc.getLongitude();
+                "Location changed: Lat: " + location.getLatitude() + " Lng: "
+                        + location.getLongitude(), Toast.LENGTH_SHORT).show();
+       longitude = location.getLongitude();
         String longitudetxt = "Longitude: " + longitude;
         Log.v("longitude", longitudetxt);
-        latitude = loc.getLatitude();
+        latitude = location.getLatitude();
         String latitudetxt = "Latitude: " + latitude;
         Log.v("latitude", latitudetxt);
+        double speed = location.getSpeed(); //spedd in meter/minute
+        speed = (speed*3600)/1000;      // speed in km/minute
 
     }
 
