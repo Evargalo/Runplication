@@ -22,6 +22,11 @@ public class Sortie {
     public Sortie() {
     }
 
+    public void start(){}
+    public void finish(){}
+    public void register(){}
+    public void show(){}
+
     public Double getDistance() {
         return distance;
     }

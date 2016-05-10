@@ -1,6 +1,9 @@
 package com.example.ensai.runplication;
 
 import android.content.Intent;
+import android.content.Context;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
