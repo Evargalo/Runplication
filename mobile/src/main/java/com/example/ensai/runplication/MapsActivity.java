@@ -1,5 +1,6 @@
 package com.example.ensai.runplication;
 
+import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -42,6 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
+        myLocationListener.update(this);
         LatLng here = new LatLng(myLocationListener.getLatitude() ,  myLocationListener.getLongitude());
         mMap.addMarker(new MarkerOptions().position(here).title("Vous êtes ici"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(here));
