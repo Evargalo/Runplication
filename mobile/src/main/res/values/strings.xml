@@ -67,4 +67,5 @@
     <string name="map">Map</string>
     <string name="liste_des_sorties">Liste des Sorties</string>
     <string name="nouvelle_sortie">Nouvelle sortie</string>
+    <string name="unite_distance">km</string>
 </resources>

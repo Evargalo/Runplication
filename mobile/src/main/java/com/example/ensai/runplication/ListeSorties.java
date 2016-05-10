@@ -54,10 +54,11 @@ public class ListeSorties extends AppCompatActivity implements View.OnClickListe
         }
         c.close();
 
-        ArrayAdapter<Sortie> sortieTable =new ArrayAdapter<Sortie>(this,android.R.layout.simple_list_item_1,android.R.id.text1,sortieList);
+        //ArrayAdapter<Sortie> sortieTable =new ArrayAdapter<Sortie>(this,android.R.layout.simple_list_item_1,android.R.id.text1,sortieList);
+        SortiesAdapter sortiesAdapter= new SortiesAdapter(this, sortieList);
 
         ListView listOfSorties=(ListView) findViewById(R.id.listeDesSorties);
-        listOfSorties.setAdapter(sortieTable);
+        listOfSorties.setAdapter(sortiesAdapter);
     }
 
 }
