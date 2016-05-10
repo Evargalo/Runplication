@@ -32,6 +32,9 @@ public class Sortie {
     public void register(){}
     public void show(){}
 
+    public String toString(){
+        return (this.heure_debut+" ; "+this.type+" ; "+this.distance);
+    }
 
     // Getters et Setters
 
