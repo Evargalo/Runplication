@@ -30,7 +30,7 @@ import static android.os.Looper.getMainLooper;
  */
 public class MyLocationListener implements LocationListener {
 
-    private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
+    public static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
     private Double longitude = (double) 0; //todo : mettre null
     private Double latitude = (double) 0; //todo : mettre null
     private Context contexte;
@@ -46,7 +46,13 @@ public class MyLocationListener implements LocationListener {
         Log.i("location", latitudetxt);
         double speed = location.getSpeed(); //spedd in meter/minute
         speed = (speed * 3600) / 1000;      // speed in km/minute
+        MapsActivity mapAct = (MapsActivity) contexte;
+        mapAct.updatePosition(latitude,longitude);
 
+    }
+
+    public static int getMyPermissionsRequestAccessFineLocation() {
+        return MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
     }
 
     public Double getLongitude() {
@@ -78,46 +84,14 @@ public class MyLocationListener implements LocationListener {
          Log.e("location", "Erreur de Permission, demande à l'utilistateur !");
          ActivityCompat.requestPermissions((Activity) contexte,
                  new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-         Log.e("location", " demandé à l'utilistateur !");
+         Log.i("location", " demandé à l'utilistateur !");
+
+     }else{
 
      }
  }
 
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) { //PAS AU BON ENDROIT
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Log.i("location", "Permission reçue !");
-                    LocationManager service = (LocationManager) contexte.getSystemService(Context.LOCATION_SERVICE);
-                    Criteria criteria = new Criteria();
-                    Log.v("location",criteria.toString());
-                    String provider = service.getBestProvider(criteria, false);
-                    try{ Location location = service.getLastKnownLocation(provider);
-                    longitude = location.getLongitude();
-                    latitude = location.getLatitude();
-                        MapsActivity mapact = (MapsActivity) contexte;
-                        mapact.updatePosition(latitude,longitude);
-                    }catch (SecurityException se){
-                        Log.e("location","ERREUR PERMISSION");
-                    }
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
 
-                } else {
-                    checkPermission();
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                }
-                return;
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request
-        }
-    }
     @Override
     public void onProviderDisabled(String provider) {}
 
@@ -126,6 +100,35 @@ public class MyLocationListener implements LocationListener {
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+    public void accessFineLocationPermissionGot() {
+        Log.i("location", "Permission reçue !");
+        LocationManager service = (LocationManager) contexte.getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        Log.v("location",criteria.toString());
+        String provider = service.getBestProvider(criteria, false);
+        Log.i("location","avant Maj");
+        try{
+
+            Location location = service.getLastKnownLocation(provider);//ECHEC;
+            if (location==null) {
+                Log.e("location", "Erreur : impossible d'obtenir la dernière position");
+                long minTime = 1;
+                float minDist = 1 ;
+                service.requestLocationUpdates(LocationManager.GPS_PROVIDER ,minTime, minDist,this);
+                location = service.getLastKnownLocation(provider);
+                Log.i("location", "nouvelle tentative pour obtenir la dernière position");
+            }else {
+                this.longitude = location.getLongitude();
+
+                this.latitude = location.getLatitude();
+                Log.i("location", "apres Maj");
+            }
+        }catch (SecurityException se){
+            Log.i("location","ERREUR PERMISSION");
+        }
+    }
+
 }
 
 

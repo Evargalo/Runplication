@@ -1,8 +1,13 @@
 package com.example.ensai.runplication;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -49,5 +54,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng here = new LatLng(myLocationListener.getLatitude() ,  myLocationListener.getLongitude());
         mMap.addMarker(new MarkerOptions().position(here).title("Vous êtes ici"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(here));
+    }
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) { //PAS AU BON ENDROIT
+        switch (requestCode) {
+            case MyLocationListener.MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    myLocationListener.accessFineLocationPermissionGot();
+                    this.updatePosition(myLocationListener.getLatitude(),myLocationListener.getLongitude());
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                } else {
+                    myLocationListener.checkPermission();
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
 }
