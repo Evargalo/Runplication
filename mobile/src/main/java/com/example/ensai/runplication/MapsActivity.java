@@ -15,11 +15,17 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     MyLocationListener myLocationListener  = null;
+    PolylineOptions polylineOpt = null;
+    Polyline polyline = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +60,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         myLocationListener.update(this,this);
         LatLng here = new LatLng(myLocationListener.getLatitude() ,  myLocationListener.getLongitude());
         //mMap.addMarker(new MarkerOptions().position(here).title("Vous êtes ici"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(here));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(48.050150,-1.741514)));
+
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(48.050150,-1.741514), 17.0f));
+        ArrayList<Double[]> listePosLongLat = new ArrayList<>();
+        listePosLongLat.add(new Double[]{-1.741514,48.050150});
+        listePosLongLat.add(new Double[]{-1.742926,48.049774,});
+        listePosLongLat.add(new Double[]{-1.741660,48.047866});
+        listePosLongLat.add(new Double[]{-1.741113,48.048181});
+        listePosLongLat.add(new Double[]{-1.740877,48.048483});
+        listePosLongLat.add(new Double[]{-1.740480, 48.050362});
+        listePosLongLat.add(new Double[]{-1.741349, 48.050360});
+        drawPath(listePosLongLat);
     }
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -79,5 +96,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+    public void drawPath(ArrayList<Double[]> listePosLongLat){
+        Double[] lastpos = new Double[]{null,null};
+         polylineOpt = new PolylineOptions();
+        for(Double[] element : listePosLongLat){
+            Double longitude = element[0];
+            Double latitude = element[1];
+            mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title(""));
+
+            polylineOpt.add(new LatLng(latitude,longitude));
+            if (lastpos[0]!=null&&lastpos[1]!=null){
+
+            }
+            lastpos=element;
+
+        }
+        mMap.addMarker(new MarkerOptions().position(new LatLng(lastpos[1],lastpos[0])).title("Vous êtes ici"));
+        polyline = mMap.addPolyline(polylineOpt);
     }
 }
