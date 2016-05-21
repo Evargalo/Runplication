@@ -34,6 +34,7 @@ public class MyLocationListener implements LocationListener {
     private Double longitude = (double) 0; //todo : mettre null
     private Double latitude = (double) 0; //todo : mettre null
     private Context contexte;
+    private MapsActivity mapAct;
 
     @Override
     public void onLocationChanged(Location location) {
@@ -46,7 +47,7 @@ public class MyLocationListener implements LocationListener {
         Log.i("location", latitudetxt);
         double speed = location.getSpeed(); //spedd in meter/minute
         speed = (speed * 3600) / 1000;      // speed in km/minute
-        MapsActivity mapAct = (MapsActivity) contexte;
+
         mapAct.updatePosition(latitude,longitude);
 
     }
@@ -63,8 +64,9 @@ public class MyLocationListener implements LocationListener {
         return latitude;
     }
 
-    public void update(final Context context) {
+    public void update(final Context context, MapsActivity mapActiv) {
         this.contexte = context;
+        this.mapAct = mapActiv;
         Log.i("location", "Mise à jour !");
         LocationManager service = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();

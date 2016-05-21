@@ -31,6 +31,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mapFragment.getMapAsync(this);
 
+
     }
 
     public void updatePosition( double latitude, double longitude){
@@ -50,13 +51,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        myLocationListener.update(this);
+        myLocationListener.update(this,this);
         LatLng here = new LatLng(myLocationListener.getLatitude() ,  myLocationListener.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(here).title("Vous êtes ici"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(here));
+        //mMap.addMarker(new MarkerOptions().position(here).title("Vous êtes ici"));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(here));
     }
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) { //PAS AU BON ENDROIT
+                                           String permissions[], int[] grantResults) {
         switch (requestCode) {
             case MyLocationListener.MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
