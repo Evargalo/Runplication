@@ -100,10 +100,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void drawPath(ArrayList<Double[]> listePosLongLat){
         Double[] lastpos = new Double[]{null,null};
          polylineOpt = new PolylineOptions();
+        mMap.addMarker(new MarkerOptions().position(new LatLng(listePosLongLat.get(0)[1],listePosLongLat.get(0)[0])).title(""));
         for(Double[] element : listePosLongLat){
             Double longitude = element[0];
             Double latitude = element[1];
-            mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title(""));
+            //mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title(""));
 
             polylineOpt.add(new LatLng(latitude,longitude));
             if (lastpos[0]!=null&&lastpos[1]!=null){
