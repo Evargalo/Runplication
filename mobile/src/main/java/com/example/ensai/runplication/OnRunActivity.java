@@ -17,6 +17,7 @@ import java.util.Date;
 
 public class OnRunActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private Handler h = null;
     Sortie sortie = null;
     Date date = null;
     MyLocationListener locationListener= null;
@@ -37,6 +38,7 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
     TextView distanceView=null;
     TextView runTimeView=null;
     TextView pauseTimeView=null;
+    private boolean over=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,19 +81,20 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
         lastLatitude=locationListener.getLatitude();
 
         Log.i("onRun","locationlistener consulté" + newLatitude);
-        final Handler h = new Handler();
+        h = new Handler();
         final int delay = 1000; //milliseconds
+
 
         h.postDelayed(new Runnable(){
             public void run(){
                 updateLocation();
-                h.postDelayed(this, delay);
-
                 runTimeView.setText(totalRunTime+"");
                 pauseTimeView.setText(totalPauseTime+"");
                 distanceView.setText(totalDistance+"");
-            }
+                if (!over){     h.postDelayed(this, delay);
+                } }
         }, delay);
+
     }
 
 
@@ -117,12 +120,12 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
             } else {
                 Log.i("onRun", "lastLocation ou newLocation = null");
             }
-                lastLongitude=newLongitude;
-                lastLatitude=newLatitude;
-            }
-            Log.i("onRun","updateLocation terminé");
-            lastLocation=newLocation;
+            lastLongitude=newLongitude;
+            lastLatitude=newLatitude;
         }
+        Log.i("onRun","updateLocation terminé");
+        lastLocation=newLocation;
+    }
 
     public void onClick(View v) {
         Intent intent1 =new Intent(this,MapsActivity.class);
@@ -131,23 +134,26 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
             startActivity(intent1);
         }
         if (v==boutonStop){
+            over=true;
             startActivity(intent2);
         }
         if (v==boutonPause){
             if (onPause){
-                boutonPause.setText("R.string.pauseButton");
+                boutonPause.setText(R.string.pause);
                 boutonPause.setBackgroundColor(getResources().getColor(R.color.orange));
                 Toast.makeText(this,R.string.endOfPauseMessage,Toast.LENGTH_SHORT).show();
                 onPause=false;
             }
-            if (!onPause){
-                boutonPause.setText("R.string.resumeRunButton");
+            else{
+                boutonPause.setText(R.string.resumeRunButton);
                 boutonPause.setBackgroundColor(getResources().getColor(R.color.green));
                 Toast.makeText(this,R.string.startOfPauseMessage,Toast.LENGTH_SHORT).show();
                 onPause=true;
             }
         }
     }
+
+
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         switch (requestCode) {
