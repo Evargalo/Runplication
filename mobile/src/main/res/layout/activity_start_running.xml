@@ -9,4 +9,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ensai.runplication.StartRunning">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/beginActivity"
+        android:id="@+id/beginActivityButton"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/parametres"
+        android:id="@+id/LoadPlanButton"
+        android:layout_below="@id/beginActivityButton"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/parametres"
+        android:id="@+id/ParametresButton"
+        android:layout_below="@id/mapButton"/>
 </RelativeLayout>
