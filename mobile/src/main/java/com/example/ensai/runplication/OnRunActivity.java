@@ -25,8 +25,6 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
     Button boutonPause=null;
     Button boutonStop=null;
     boolean onPause=false;
-    long totalTime=0;
-    long pauseTime=0;
     Location lastLocation=null;
     Location newLocation=null;
     Double lastLongitude=0.0;
@@ -46,9 +44,10 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_on_run);
 
         locationListener=new MyLocationListener();
-        locationListener.update(this);
-
         Log.i("onRun","locationlistener créé");
+        locationListener.update(this);
+        Log.i("onRun","locationlistener updaté");
+
         sortie= new Sortie(this);
         date = Calendar.getInstance().getTime();
         startTime=Calendar.getInstance().getTimeInMillis();
@@ -65,8 +64,6 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
         boutonPause.setOnClickListener(this);
         boutonStop.setOnClickListener(this);
 
-
-
         totalRunTime=0;
         totalPauseTime=0;
         totalDistance=0.0;
@@ -75,8 +72,6 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
         newLocation=locationListener.getLocation();
 
         lastLocation=newLocation;
-
-
 
         newLongitude=locationListener.getLongitude();
         lastLongitude=locationListener.getLongitude();
@@ -102,21 +97,32 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
 
     private void updateLocation(){
         Log.i("onRun","updateLocation lancé");
+        locationListener.update(this);
         newLocation=locationListener.getLocation();
+        if (newLocation==null) {
+            Log.i("onRun", "location récupérée = null ! problème...");
+        } else {
+            Log.i("onRun", "location récupérée");
+        }
+
         if (onPause){totalPauseTime++;}
         else{totalRunTime++;
 
-            Float distanceRan=lastLocation.distanceTo(newLocation);
-            totalDistance=totalDistance+distanceRan;
-            locationListener.update(this);
             newLongitude=locationListener.getLongitude();
             newLatitude=locationListener.getLatitude();
-            lastLongitude=newLongitude;
-            lastLatitude=newLatitude;
+            Log.i("onRun","latitude et longitudes récupérés");
+
+            if (lastLocation!=null && newLocation !=null) {
+                Float distanceRan=lastLocation.distanceTo(newLocation); totalDistance=totalDistance+distanceRan;
+            } else {
+                Log.i("onRun", "lastLocation ou newLocation = null");
+            }
+                lastLongitude=newLongitude;
+                lastLatitude=newLatitude;
+            }
+            Log.i("onRun","updateLocation terminé");
+            lastLocation=newLocation;
         }
-        Log.i("onRun","updateLocation terminé");
-    lastLocation=newLocation;
-    }
 
     public void onClick(View v) {
         Intent intent1 =new Intent(this,MapsActivity.class);
