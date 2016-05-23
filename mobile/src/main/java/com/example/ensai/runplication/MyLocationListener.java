@@ -97,7 +97,7 @@ public class MyLocationListener implements LocationListener {
          Log.i("location", " demandé à l'utilistateur !");
 
      }else{
-
+//
      }
  }
 
