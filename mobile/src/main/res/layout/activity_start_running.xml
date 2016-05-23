@@ -14,17 +14,19 @@
         android:layout_height="wrap_content"
         android:text="@string/beginActivity"
         android:id="@+id/beginActivityButton"
+        android:background="@color/green"
         />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/parametres"
-        android:id="@+id/LoadPlanButton"
+        android:text="@string/loadPlanText"
+        android:id="@+id/loadPlanButton"
         android:layout_below="@id/beginActivityButton"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/parametres"
         android:id="@+id/ParametresButton"
-        android:layout_below="@id/mapButton"/>
+        android:background="@color/orange"
+        android:layout_below="@id/loadPlanButton"/>
 </RelativeLayout>

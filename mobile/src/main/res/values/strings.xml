@@ -69,4 +69,16 @@
     <string name="nouvelle_sortie">Nouvelle sortie</string>
     <string name="unite_distance">km</string>
     <string name="let_s_run">Let\'s Run !</string>
+    <string name="beginActivity">C\'est parti !</string>
+    <string name="courage">Courage !</string>
+    <string name="date">date :</string>
+    <string name="pauseTime">Temps de pause :</string>
+    <string name="totalDist">Distance totale :</string>
+    <string name="totalTime">Temps de course :</string>
+    <string name="pause">PAUSE</string>
+    <string name="stop">STOP</string>
+    <string name="resumeRunButton">REPARTIR</string>
+    <string name="startOfPauseMessage">On souffle un peu...</string>
+    <string name="endOfPauseMessage">C\'est reparti!</string>
+    <string name="loadPlanText">Charger un plan de sortie</string>
 </resources>

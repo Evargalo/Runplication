@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:text="@string/nouvelle_sortie"
         android:id="@+id/AllonsCourirButton"
+        android:background="@color/green"
         android:layout_below="@id/text_accueil"/>
     <Button
         android:layout_width="match_parent"
@@ -37,5 +38,6 @@
         android:layout_height="wrap_content"
         android:text="@string/parametres"
         android:id="@+id/ParametresButton"
+        android:background="@color/orange"
         android:layout_below="@id/mapButton"/>
 </RelativeLayout>

@@ -48,7 +48,9 @@
         <activity android:name=".ShowSortie" />
         <activity android:name=".ListeSorties" />
         <activity android:name=".StartRunning" />
-        <activity android:name=".Parametres"></activity>
+        <activity android:name=".Parametres" />
+        <activity android:name=".OnRunActivity" />
+        <activity android:name=".LoadPlanActivity"></activity>
     </application>
 
 </manifest>
