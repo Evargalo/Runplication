@@ -35,7 +35,7 @@ public class MyLocationListener implements LocationListener {
     private Double latitude = (double) 0; //todo : mettre null
     private Double speed2 = 0.0;
     private Context contexte;
-    private MapsActivity mapAct;
+
     private Location location;
 
     @Override
@@ -51,7 +51,7 @@ public class MyLocationListener implements LocationListener {
         double speed = location.getSpeed(); //speed in meter/minute
         speed2 = (speed * 3600) / 1000;      // speed in km/hour
 
-        mapAct.updatePosition(latitude,longitude);
+
 
     }
 
@@ -73,21 +73,20 @@ public class MyLocationListener implements LocationListener {
         return speed2;
     }
 
-    public void update(final Context context, MapsActivity mapActiv) {
+    public void update(final Context context) {
         this.contexte = context;
-        this.mapAct = mapActiv;
         Log.i("location", "Mise à jour !");
         LocationManager service = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         Log.v("location",criteria.toString());
-        String provider = service.getBestProvider(criteria, false);
 
         checkPermission();
 
+    }
 
-
-
-
+    public void update (final Context context, MapsActivity mapAct){
+        update(context);
+        mapAct.updatePosition(this.latitude,this.longitude);
     }
  public void checkPermission(){
      if (ActivityCompat.checkSelfPermission(contexte, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(contexte, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

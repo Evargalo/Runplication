@@ -1,10 +1,12 @@
 package com.example.ensai.runplication;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -44,6 +46,8 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_on_run);
 
         locationListener=new MyLocationListener();
+
+        Log.i("onRun","locationlistener créé");
         sortie= new Sortie(this);
         date = Calendar.getInstance().getTime();
         startTime=Calendar.getInstance().getTimeInMillis();
@@ -55,6 +59,7 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
         boutonMap = (Button) findViewById(R.id.mapButton);
         boutonPause = (Button) findViewById(R.id.pauseButton);
         boutonStop = (Button) findViewById(R.id.stopButton);
+
         boutonMap.setOnClickListener(this);
         boutonPause.setOnClickListener(this);
         boutonStop.setOnClickListener(this);
@@ -65,13 +70,16 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
         totalPauseTime=0;
         totalDistance=0.0;
 
+        Log.i("onRun","layout terminé");
         newLocation=locationListener.getLocation();
+
         lastLocation=newLocation;
         newLongitude=locationListener.getLongitude();
         lastLongitude=locationListener.getLongitude();
         newLatitude=locationListener.getLatitude();
         lastLatitude=locationListener.getLatitude();
 
+        Log.i("onRun","locationlistener consulté" + newLatitude);
         final Handler h = new Handler();
         final int delay = 1000; //milliseconds
 
@@ -89,7 +97,7 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
 
 
     private void updateLocation(){
-
+        Log.i("onRun","updateLocation lancé");
         newLocation=locationListener.getLocation();
         if (onPause){totalPauseTime++;}
         else{totalRunTime++;
@@ -102,6 +110,7 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
             lastLongitude=newLongitude;
             lastLatitude=newLatitude;
         }
+        Log.i("onRun","updateLocation terminé");
     lastLocation=newLocation;
     }
 
@@ -127,6 +136,30 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
                 Toast.makeText(this,R.string.startOfPauseMessage,Toast.LENGTH_SHORT).show();
                 onPause=true;
             }
+        }
+    }
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MyLocationListener.MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    locationListener.accessFineLocationPermissionGot();
+                    this.lastLocation =(locationListener.getLocation());
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                } else {
+                    locationListener.checkPermission();
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
         }
     }
 

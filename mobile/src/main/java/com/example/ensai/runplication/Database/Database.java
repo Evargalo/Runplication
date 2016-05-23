@@ -20,6 +20,7 @@ public class Database extends SQLiteOpenHelper {
                 "longitude NUMERIC, latitude NUMERIC), " +
                 "FOREIGN KEY (idSortie) REFERENCES sortie(id);" +
                 "INSERT INTO sortie VALUES ('1','','','2531','8234','23','','','','c est fatigant!')" );
+
     }
     public void onUpgrade(SQLiteDatabase db,int oldVersion, int newVersion){
 

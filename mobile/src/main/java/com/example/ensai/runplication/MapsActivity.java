@@ -26,6 +26,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     MyLocationListener myLocationListener  = null;
     PolylineOptions polylineOpt = null;
     Polyline polyline = null;
+    ArrayList<Double[]> listePosLongLat = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void updatePosition( double latitude, double longitude){
-        mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title("Vous êtes ici"));
+
+        if(latitude!=0.0&&longitude!=0.0){
+            mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title("Vous êtes ici"));
+            Log.i("location",latitude +" : "+longitude);
+        }
+         // drawPath(listePosLongLat);
     }
     /**
      * Manipulates the map once available.
@@ -62,8 +68,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //mMap.addMarker(new MarkerOptions().position(here).title("Vous êtes ici"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(48.050150,-1.741514)));
 
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(48.050150,-1.741514), 17.0f));
-        ArrayList<Double[]> listePosLongLat = new ArrayList<>();
+        //mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(48.050150,-1.741514), 17.0f));
+
         listePosLongLat.add(new Double[]{-1.741514,48.050150});
         listePosLongLat.add(new Double[]{-1.742926,48.049774,});
         listePosLongLat.add(new Double[]{-1.741660,48.047866});
