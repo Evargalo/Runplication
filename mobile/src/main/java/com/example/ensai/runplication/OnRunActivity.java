@@ -46,8 +46,7 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_on_run);
 
         locationListener=new MyLocationListener();
-        locationListener.checkPermission();
-
+        locationListener.update(this);
 
         Log.i("onRun","locationlistener créé");
         sortie= new Sortie(this);
@@ -76,6 +75,9 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
         newLocation=locationListener.getLocation();
 
         lastLocation=newLocation;
+
+
+
         newLongitude=locationListener.getLongitude();
         lastLongitude=locationListener.getLongitude();
         newLatitude=locationListener.getLatitude();

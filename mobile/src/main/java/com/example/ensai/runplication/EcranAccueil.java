@@ -17,6 +17,7 @@ public class EcranAccueil extends AppCompatActivity implements View.OnClickListe
     Button boutonListeSortie=null;
     Button boutonNewRun=null;
     Button boutonParametres=null;
+    MyLocationListener locationListener= null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,10 @@ public class EcranAccueil extends AppCompatActivity implements View.OnClickListe
 
         boutonNewRun= (Button) findViewById(R.id.AllonsCourirButton);
         boutonNewRun.setOnClickListener(this);
+
+        locationListener=new MyLocationListener();
+        locationListener.update(this);
+
 
     }
     @Override

@@ -35,7 +35,6 @@ public class MyLocationListener implements LocationListener {
     private Double latitude = (double) 0; //todo : mettre null
     private Double speed2 = 0.0;
     private Context contexte;
-
     private Location location;
 
     @Override
@@ -126,7 +125,7 @@ public class MyLocationListener implements LocationListener {
                 long minTime = 1;
                 float minDist = 1 ;
                 service.requestLocationUpdates(LocationManager.GPS_PROVIDER ,minTime, minDist,this);
-                location = service.getLastKnownLocation(provider);
+                this.location = service.getLastKnownLocation(provider);
                 Log.i("location", "nouvelle tentative pour obtenir la dernière position");
             }else {
                 this.longitude = location.getLongitude();
