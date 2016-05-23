@@ -2,7 +2,9 @@ package com.example.ensai.runplication;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -126,21 +128,28 @@ public class MyLocationListener implements LocationListener {
         Log.i("location","avant Maj");
         try{
 
-            Location location = service.getLastKnownLocation(provider);//ECHEC;
+            Location location = service.getLastKnownLocation(provider);
             int count=0;
             while (location==null && count<10) {
                 Log.e("location", "Erreur : impossible d'obtenir la dernière position");
-                long minTime = 1;
-                float minDist = 1 ;
+                long minTime = 10;
+                float minDist = 0 ;
+
+
                 service.requestLocationUpdates(LocationManager.GPS_PROVIDER ,minTime, minDist,this);
-                location = service.getLastKnownLocation(provider);
+                location =  service.getLastKnownLocation(provider);
+
+                Log.i("location", "Provider : "+provider);
+                Log.i("location", "Location : "+location);
                 Log.i("location", "nouvelle tentative pour obtenir la dernière position, count = "+ count);
                 count++;
             }
-            this.longitude = location.getLongitude();
-            this.latitude = location.getLatitude();
-            this.location = location;
-            Log.i("location", "apres Maj");
+            if (location!=null){
+                this.longitude = location.getLongitude();
+                this.latitude = location.getLatitude();
+                this.location = location;
+                Log.i("location", "apres Maj");
+             }
 
         }catch (SecurityException se){
             Log.i("location","ERREUR PERMISSION");
