@@ -84,7 +84,6 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
         h = new Handler();
         final int delay = 1000; //milliseconds
 
-
         h.postDelayed(new Runnable(){
             public void run(){
                 updateLocation();
@@ -130,11 +129,17 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         Intent intent1 =new Intent(this,MapsActivity.class);
         Intent intent2 =new Intent(this,ShowSortie.class);
+
         if (v==boutonMap){
             startActivity(intent1);
         }
         if (v==boutonStop){
             over=true;
+            Bundle bundle=new Bundle();
+            bundle.putLong("totalRunTime", totalRunTime);
+            bundle.putLong("totalPauseTime", totalPauseTime);
+            bundle.putDouble("totalDistance", totalDistance);
+            intent2.putExtra("sortie",bundle);
             startActivity(intent2);
         }
         if (v==boutonPause){

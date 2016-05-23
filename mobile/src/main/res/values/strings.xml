@@ -65,7 +65,7 @@
     <string name="buttonNouvelleSortie">Nouvelle Sortie</string>
     <string name="parametres">Paramètres</string>
     <string name="map">Map</string>
-    <string name="liste_des_sorties">Liste des Sorties</string>
+    <string name="liste_des_sorties">Historique</string>
     <string name="nouvelle_sortie">Nouvelle sortie</string>
     <string name="unite_distance">km</string>
     <string name="let_s_run">Let\'s Run !</string>
@@ -81,4 +81,6 @@
     <string name="startOfPauseMessage">On souffle un peu...</string>
     <string name="endOfPauseMessage">C\'est reparti!</string>
     <string name="loadPlanText">Charger un plan de sortie</string>
+    <string name="avgSpeed">Vitesse moyenne: </string>
+    <string name="speedUnit_km_h">" km/h"</string>
 </resources>
