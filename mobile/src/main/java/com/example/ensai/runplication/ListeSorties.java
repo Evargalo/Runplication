@@ -22,7 +22,7 @@ public class ListeSorties extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View v){
         Toast.makeText(this,R.string.textOnClick,Toast.LENGTH_SHORT).show();
-        Intent myIntent = new Intent(this, Sortie.class);
+        Intent myIntent = new Intent(this, StartRunning.class);
         // myIntent.putExtra("key", value); //Optional parameters
         this.startActivity(myIntent);
     }
@@ -36,10 +36,8 @@ public class ListeSorties extends AppCompatActivity implements View.OnClickListe
         List<Sortie> sortieList =new ArrayList<Sortie>();
         Database myDB=new Database(this);
         String[] arguments={};
-        // myDB.getReadableDatabase().rawQuery("SELECT * FROM task;", arguments);
 
-
-        Cursor c = myDB.getReadableDatabase().rawQuery("SELECT * FROM sortie", arguments);
+        /*Cursor c = myDB.getReadableDatabase().rawQuery("SELECT * FROM sortie", arguments);
         Sortie sortie=null;
         int nbrows=c.getCount();
         while(c.moveToNext())
@@ -50,6 +48,20 @@ public class ListeSorties extends AppCompatActivity implements View.OnClickListe
             sortie.setDuree(c.getDouble(5));
             sortie.setDuree_pause(c.getDouble(6));
             sortie.setCommentaire(c.getString(10));
+            sortieList.add(sortie);
+        }
+        c.close();
+        */
+
+        Cursor c = myDB.getReadableDatabase().rawQuery("SELECT id, type, distance FROM sortie", arguments);
+        Sortie sortie=null;
+        int nbrows=c.getCount();
+        while(c.moveToNext())
+        {
+            sortie=new Sortie(this);
+            sortie.setId(c.getInt(0));
+            sortie.setDistance(c.getDouble(2));
+            sortie.setType(c.getString(1));
             sortieList.add(sortie);
         }
         c.close();

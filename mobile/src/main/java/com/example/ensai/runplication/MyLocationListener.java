@@ -33,20 +33,23 @@ public class MyLocationListener implements LocationListener {
     public static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
     private Double longitude = (double) 0; //todo : mettre null
     private Double latitude = (double) 0; //todo : mettre null
+    private Double speed2 = 0.0;
     private Context contexte;
     private MapsActivity mapAct;
+    private Location location;
 
     @Override
     public void onLocationChanged(Location location) {
 
+        this.location=location;
         longitude = location.getLongitude();
         String longitudetxt = "Longitude: " + longitude;
         Log.i("location", longitudetxt);
         latitude = location.getLatitude();
         String latitudetxt = "Latitude: " + latitude;
         Log.i("location", latitudetxt);
-        double speed = location.getSpeed(); //spedd in meter/minute
-        speed = (speed * 3600) / 1000;      // speed in km/minute
+        double speed = location.getSpeed(); //speed in meter/minute
+        speed2 = (speed * 3600) / 1000;      // speed in km/hour
 
         mapAct.updatePosition(latitude,longitude);
 
@@ -56,12 +59,18 @@ public class MyLocationListener implements LocationListener {
         return MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
     }
 
+    public Location getLocation() { return location;}
+
     public Double getLongitude() {
         return longitude;
     }
 
     public Double getLatitude() {
         return latitude;
+    }
+
+    public Double getSpeed() {
+        return speed2;
     }
 
     public void update(final Context context, MapsActivity mapActiv) {

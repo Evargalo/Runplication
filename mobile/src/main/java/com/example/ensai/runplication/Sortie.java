@@ -22,7 +22,8 @@ public class Sortie {
     private Double neg_denivele;    // en mètres
     private Calendar heure_debut;
     private Double calories;
-    private SortieType type;
+    //private SortieType type;
+    private String type;
     private Releve releve;
     private String commentaire;
 
@@ -46,7 +47,6 @@ public class Sortie {
         arguments[8]=calories.toString();
         arguments[9]=commentaire.toString();
         myDB.getWritableDatabase().rawQuery("INSERT INTO sortie VALUES (?,?,?,?,?,?,?,?,?,?);",arguments);
-
 
     }
     public void show(){}
@@ -84,14 +84,20 @@ public class Sortie {
         this.releve = releve;
     }
 
-    public SortieType getType() {
+   /* public SortieType getType() {
+        return type;
+    }*/
+    public String getType() {
         return type;
     }
 
-    public void setType(SortieType type) {
+   /* public void setType(SortieType type) {
         this.type = type;
     }
-
+*/
+   public void setType(String type) {
+       this.type = type;
+   }
     public Double getCalories() {
         return calories;
     }
