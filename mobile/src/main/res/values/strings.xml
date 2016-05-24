@@ -83,4 +83,5 @@
     <string name="loadPlanText">Charger un plan de sortie</string>
     <string name="avgSpeed">Vitesse moyenne: </string>
     <string name="speedUnit_km_h">" km/h"</string>
+    <string name="resumeSortie">Résumé de la sortie :</string>
 </resources>
