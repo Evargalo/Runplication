@@ -8,25 +8,105 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.ensai.runplication.ShowSortie">
-
-    <View
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/date_sortie"
-        android:id="@+id/date_sortie_text"/>
+        android:orientation="horizontal"
+        android:id="@+id/date">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date_sortie"
+            android:id="@+id/date_sortie_text"/>
 
-
-    <View
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date_sortie"
+            android:layout_alignRight="@+id/date_sortie_text"
+            android:id="@+id/date_sortie_value"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/date_sortie"
-        android:layout_alignRight="@+id/date_sortie_text"
-        android:id="@+id/date_sortie_value"/>
+        android:orientation="horizontal"
+        android:id="@+id/total_dist"
+        android:layout_below="@id/date">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/totalDist"
+            android:id="@+id/totalDistText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="ici la distance "
+            android:id="@+id/totalDist"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/unite_distance"
+            android:id="@+id/unite_distance"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/total_time"
+        android:layout_below="@id/total_dist">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/totalTime"
+            android:id="@+id/totalTimeText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="ici la durée"
+            android:id="@+id/totalTime"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/pause_time"
+        android:layout_below="@id/total_time">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/pauseTime"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/pauseTime"
+            android:text="ici le temps de pause"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/avg_speed"
+        android:layout_below="@id/pause_time">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/avgSpeed"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/speed"
+            android:text="ici la vitesse"/>
+    </LinearLayout>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_options_show_sortie"
-        android:id="@+id/bouton_options"/>
+        android:id="@+id/bouton_options"
+        android:layout_below="@id/avg_speed"/>
 
 </RelativeLayout>
