@@ -67,6 +67,11 @@
             android:layout_height="match_parent"
             android:text="ici la durée"
             android:id="@+id/totalTime"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/runTimeUnit"
+            android:text="@string/secondes"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -88,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/pauseTimeS"
-        android:text="ici le temps de pause"/>
+        android:text="@string/secondes"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

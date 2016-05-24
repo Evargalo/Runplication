@@ -13,7 +13,7 @@
     </string>
 
     <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
+    <string name="pref_default_display_name">POND</string>
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
     <string-array name="pref_example_list_titles">
@@ -67,7 +67,7 @@
     <string name="map">Map</string>
     <string name="liste_des_sorties">Historique</string>
     <string name="nouvelle_sortie">Nouvelle sortie</string>
-    <string name="unite_distance">km</string>
+    <string name="unite_distance">  km</string>
     <string name="let_s_run">Let\'s Run !</string>
     <string name="beginActivity">C\'est parti !</string>
     <string name="courage">Courage !</string>
@@ -83,5 +83,6 @@
     <string name="loadPlanText">Charger un plan de sortie</string>
     <string name="avgSpeed">Vitesse moyenne: </string>
     <string name="speedUnit_km_h">" km/h"</string>
+    <string name="secondes">" secondes"</string>
     <string name="resumeSortie">Résumé de la sortie :</string>
 </resources>

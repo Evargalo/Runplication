@@ -87,13 +87,12 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
         h.postDelayed(new Runnable(){
             public void run(){
                 updateLocation();
-                runTimeView.setText(totalRunTime+"");
-                pauseTimeView.setText(totalPauseTime+"");
+                runTimeView.setText(miseEnFormeTemps(totalRunTime));
+                pauseTimeView.setText(miseEnFormeTemps(totalPauseTime));
                 distanceView.setText(totalDistance+"");
                 if (!over){     h.postDelayed(this, delay);
                 } }
         }, delay);
-
     }
 
 
@@ -115,7 +114,8 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
             Log.i("onRun","latitude et longitudes récupérés");
 
             if (lastLocation!=null && newLocation !=null) {
-                Float distanceRan=lastLocation.distanceTo(newLocation); totalDistance=totalDistance+distanceRan;
+                Float distanceRan=lastLocation.distanceTo(newLocation);
+                totalDistance=totalDistance+distanceRan/1000;
             } else {
                 Log.i("onRun", "lastLocation ou newLocation = null");
             }
@@ -182,6 +182,20 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
             // other 'case' lines to check for other
             // permissions this app might request
         }
+    }
+
+    String miseEnFormeTemps (long time){
+        String result="";
+        long nbhours, nbmin, nbsec;
+        if (time>3600){
+            nbhours=time/3600;
+            time=time%3600;
+            result=nbhours+"h ";
+        }
+            nbmin=time/60;
+            time=time%60;
+            result=result+nbmin+"min "+time+"s";
+        return result;
     }
 
 }
