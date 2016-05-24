@@ -87,14 +87,13 @@ public class OnRunActivity extends AppCompatActivity implements View.OnClickList
         h.postDelayed(new Runnable(){
             public void run(){
                 updateLocation();
-                runTimeView.setText(miseEnFormeTemps(totalRunTime));
-                pauseTimeView.setText(miseEnFormeTemps(totalPauseTime));
-                distanceView.setText(totalDistance+"");
+                runTimeView.setText(" "+miseEnFormeTemps(totalRunTime));
+                pauseTimeView.setText(" "+miseEnFormeTemps(totalPauseTime));
+                distanceView.setText(" "+totalDistance);
                 if (!over){     h.postDelayed(this, delay);
                 } }
         }, delay);
     }
-
 
     private void updateLocation(){
         Log.i("onRun","updateLocation lancé");
